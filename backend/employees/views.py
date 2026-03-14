@@ -3,7 +3,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.db.models import Q
 
-from .models import Employee, Clock
+from .models import Employee
 from .serializers import EmployeeListSerializer
 from .utils import calculate_labour_hours, calculate_labour_hours_for_employee
 
@@ -21,7 +21,8 @@ class EmployeeViewSet(viewsets.ReadOnlyModelViewSet):
         search = self.request.query_params.get("search", None)
         if search:
             queryset = queryset.filter(
-                Q(first_name__icontains=search) | Q(last_name__icontains=search)
+                Q(first_name__icontains=search)
+                | Q(last_name__icontains=search)
             )
 
         # Annotate each employee with total_hours calculated from their clocks

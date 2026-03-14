@@ -8,7 +8,7 @@ Time periods:
     Period 4 (Late Night): 23:00 - 05:00 (next day)
 """
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 # Period boundaries as (start_hour, end_hour) tuples.
 # Period 4 wraps midnight, so it is split into two segments.
@@ -57,10 +57,14 @@ def calculate_labour_hours(clock_in, clock_out):
                 day_start +
                 timedelta(hours=5)
             ),
-            ("period1", day_start + timedelta(hours=5), day_start + timedelta(hours=12)),
-            ("period2", day_start + timedelta(hours=12), day_start + timedelta(hours=18)),
-            ("period3", day_start + timedelta(hours=18), day_start + timedelta(hours=23)),
-            ("period4", day_start + timedelta(hours=23), day_start + timedelta(hours=24)),
+            ("period1", day_start + timedelta(hours=5),
+             day_start + timedelta(hours=12)),
+            ("period2", day_start + timedelta(hours=12),
+             day_start + timedelta(hours=18)),
+            ("period3", day_start + timedelta(hours=18),
+             day_start + timedelta(hours=23)),
+            ("period4", day_start + timedelta(hours=23),
+             day_start + timedelta(hours=24)),
         ]
 
         for period_name, period_start, period_end in boundaries:
@@ -74,7 +78,7 @@ def calculate_labour_hours(clock_in, clock_out):
                 # gap, which shouldn't happen since periods cover the full day.
                 pass
 
-            # Calculate overlap between [current, clock_out) and [period_start, period_end)
+            # Overlap: [current, clock_out) ∩ [period_start, period_end)
             overlap_start = max(current, period_start)
             overlap_end = min(clock_out, period_end)
 
