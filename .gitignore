@@ -1,0 +1,37 @@
+# Node.js / Frontend
+node_modules/
+.next/
+.npm
+*.tgz
+
+# Python / Django
+__pycache__/
+*.pyc
+*.pyo
+*.sqlite3
+staticfiles/
+.mypy_cache/
+.pytest_cache/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
