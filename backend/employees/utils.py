@@ -50,7 +50,13 @@ def calculate_labour_hours(clock_in, clock_out):
 
         # Build ordered boundaries for this calendar day
         boundaries = [
-            ("period4", day_start + timedelta(hours=0), day_start + timedelta(hours=5)),
+            (
+                "period4",
+                day_start +
+                timedelta(hours=0),
+                day_start +
+                timedelta(hours=5)
+            ),
             ("period1", day_start + timedelta(hours=5), day_start + timedelta(hours=12)),
             ("period2", day_start + timedelta(hours=12), day_start + timedelta(hours=18)),
             ("period3", day_start + timedelta(hours=18), day_start + timedelta(hours=23)),
@@ -96,12 +102,16 @@ def calculate_labour_hours_for_employee(clocks):
     """
     results = []
     for clock in clocks:
-        hours = calculate_labour_hours(clock.clock_in_datetime, clock.clock_out_datetime)
+        hours = calculate_labour_hours(
+            clock.clock_in_datetime,
+            clock.clock_out_datetime
+        )
         total = round(sum(hours.values()), 1)
         results.append({
             "date": clock.clock_in_datetime.strftime("%Y-%m-%d"),
             "clock_in": clock.clock_in_datetime.strftime("%Y-%m-%d %H:%M:%S"),
-            "clock_out": clock.clock_out_datetime.strftime("%Y-%m-%d %H:%M:%S"),
+            "clock_out":
+                clock.clock_out_datetime.strftime("%Y-%m-%d %H:%M:%S"),
             "period1": hours["period1"],
             "period2": hours["period2"],
             "period3": hours["period3"],

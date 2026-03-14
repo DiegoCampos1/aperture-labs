@@ -67,8 +67,9 @@ export default function Sidebar() {
               px: 2,
               cursor: "pointer",
               transition: "background-color 200ms ease",
+              backgroundColor: item.active ? "#F0F1F3" : "transparent",
               "&:hover": {
-                backgroundColor: item.active ? "rgba(29, 191, 115, 0.06)" : "rgba(27, 58, 92, 0.04)",
+                backgroundColor: item.active ? "#E8E9EB" : "rgba(27, 58, 92, 0.04)",
               },
             }}
             aria-current={item.active ? "page" : undefined}
@@ -79,7 +80,7 @@ export default function Sidebar() {
                 sx: {
                   fontWeight: item.active ? 600 : 500,
                   fontSize: "0.938rem",
-                  color: item.active ? "#1DBF73" : "#1B3A5C",
+                  color: "#1B3A5C",
                 },
               }}
             />
